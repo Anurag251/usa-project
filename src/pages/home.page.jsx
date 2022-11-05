@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomButtonComponent from "../components/custom-button.component";
 import LeftSectionComponent from "../components/left-section.component";
 import RightSectionComponent from "../components/right-section.component";
 
 const HomePage = () => {
+  // all form data value store in state
+  const [formValue, setFormValue] = useState({
+    importName: "",
+    toleranceWindow: true,
+    socialDistance: true,
+    client: true,
+    testingCenter1: "",
+    testingCenter2: "",
+    testingCenter3: "",
+    testingCenter4: "",
+  });
+
+  // file data store in state
+  const [importFile, setImportFile] = useState("");
+
+  // setting value
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormValue({ ...formValue, [name]: value });
+  };
+
   return (
     <div className="home-page">
       <div className="popup">
@@ -28,14 +50,25 @@ const HomePage = () => {
           </div>
 
           <div className="sections">
-            <LeftSectionComponent />
+            <LeftSectionComponent
+              formValue={formValue}
+              setFormValue={setFormValue}
+              handleChange={handleChange}
+              importFile={importFile}
+              setImportFile={setImportFile}
+            />
 
-            <RightSectionComponent />
+            <RightSectionComponent
+              formValue={formValue}
+              setFormValue={setFormValue}
+              handleChange={handleChange}
+            />
           </div>
 
           <div className="footer">
             <div className="note">
-              Data in the import is correct. Please press Continue to import
+              Data in the import file is correct. Please press Continue to
+              import
             </div>
 
             <div className="btn-group">

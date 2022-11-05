@@ -129,7 +129,7 @@ body
     cursor: pointer
 
     &:hover
-      opacity: .9
+      opacity: .8
 
 .form-select
   padding: .3rem .4rem
@@ -153,6 +153,15 @@ body
   padding-bottom: 1rem
   border-bottom: 1px solid $border
 
+  .file-drag
+
+    .image-view-area
+
+      .upload-image
+        overflow: hidden
+        width: 100%
+        object-fit: cover
+
   .drag-and-drop-area
     border: 1px solid $border
     padding: .7rem
@@ -162,7 +171,7 @@ body
       padding: 1rem
       border: 1px dashed $border
       border-radius: 10px
-      height: 120px
+      min-height: 120px
       @include flex($justify: center)
       margin-bottom: .7rem
 
@@ -187,6 +196,8 @@ body
       font-size: 14px
       color: #414141
       margin-left: 10px
+      max-width: 300px
+      overflow: auto
 
     .file-size
       font-size: 11px
@@ -206,7 +217,7 @@ body
   .switch
     .switch-btn
       @include flex(flex-start)
-      font-size: 12px
+      font-size: 13px
       font-weight: 400
       color: $pri
 
@@ -214,12 +225,15 @@ body
         height: 20px
         width: 40px
         border-radius: 50px
-        background-color: $pri
+        background-color: #b0b0b0
         margin-right: 10px
         position: relative
         overflow: hidden
+        transition: .4s
+        cursor: pointer
 
         &.active
+          background-color: $pri
           &::before
             left: 22px
 
@@ -233,6 +247,7 @@ body
           width: 16px
           border-radius: 50%
           background-color: $light
+          transition: .4s
 
       .h_das
         height: 20px
@@ -261,6 +276,7 @@ body
     font-size: 13px
     font-weight: 400
     margin-right: 10px
+    cursor: pointer
 
     .radio-btn
       height: 18px
@@ -270,16 +286,22 @@ body
       margin-right: 5px
       position: relative
 
+      &.active
+        &::before
+          height: 10px
+          width: 10px
+
       &::before
         content: ''
         position: absolute
         left: 50%
         top: 50%
         transform: translate(-50%, -50%)
-        height: 10px
-        width: 10px
+        height: 0
+        width: 0
         border-radius: 10px
         background-color: $pri
+        transition: all .5s cubic-bezier(0.77, 0, 0.175, 1)
 
 .testing-list
   margin-top: 1rem
@@ -317,7 +339,7 @@ body
   margin-top: 1rem
 
   .note
-    font-size: 14px
+    font-size: 16px
     font-weight: 600
     margin-bottom: .5rem
     text-align: center

@@ -1,9 +1,9 @@
 import React from "react";
 
-const CustomSelectComponent = ({ children }) => {
+const CustomSelectComponent = ({ handleChange, children, ...otherProps }) => {
   return (
     <div className="form-select">
-      <select name="" id="">
+      <select onChange={handleChange} {...otherProps}>
         {children}
       </select>
     </div>
